@@ -1,7 +1,3 @@
-import { ScrollView, Text, View } from 'react-native';
-import { globalStyles } from '../../../config/theme/theme';
-import { Title } from '../ui/Title';
-
 export const menuItems = [
     // 01-animationMenuItems
     {
@@ -65,22 +61,3 @@ export const menuItems = [
         component: 'TextInputScreen',
     },
 ];
-export const HomeScreen = () => {
-    return (
-        <View style={[ globalStyles.mainContainer ]}>
-            <View style={globalStyles.globalMargin}>
-
-                <ScrollView>
-                    <Title text='Opciones de menu' safe />
-
-                    {
-                        menuItems.map(item => (
-                            <Text key={item.component}>{item.name}</Text>
-                        ))
-                    }
-                </ScrollView>
-
-            </View>
-        </View>
-    );
-}
