@@ -26,7 +26,7 @@ export const Button = ({ text, styles, onPress }: Props) => {
                 {
                     color: colors.buttonTextColor
                 }
-            ]}>Button</Text>
+            ]}>{text}</Text>
         </Pressable>
     );
 }
