@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
-import { ScrollView, StyleSheet, Text, TextInput, View } from 'react-native';
+import { useState } from 'react';
+import { ScrollView, Text, TextInput, View } from 'react-native';
 import { Title } from '../../components/ui/Title';
 import { CustomView } from '../../components/ui/CustomView';
 import { Card } from '../../components/ui/Card';
 import { globalStyles } from '../../../config/theme/theme';
 
-const TextInputScreen = () => {
+export const TextInputScreen = () => {
 
     const [ form, setForm ] = useState({
         name: '',
@@ -68,7 +68,3 @@ const TextInputScreen = () => {
 
     );
 }
-
-const styles = StyleSheet.create({})
-
-export default TextInputScreen;
