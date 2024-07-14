@@ -29,6 +29,18 @@ export const globalStyles = StyleSheet.create({
         color: colors.text,
     },
 
+
+    input: {
+        borderColor: 'rgba(0,0,0,0.3)',
+        color: colors.text,
+        borderRadius: 10,
+        padding: 10,
+        margin: 12,
+        height: 40,
+        borderWidth: 1,
+    },
+
+
     mainContainer: {
         flex: 1,
         backgroundColor: colors.background,
