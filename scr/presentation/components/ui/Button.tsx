@@ -1,4 +1,4 @@
-import { Pressable, StyleProp, Text, View, ViewStyle } from 'react-native';
+import { Pressable, StyleProp, Text, ViewStyle } from 'react-native';
 import { colors, globalStyles } from '../../../config/theme/theme';
 
 interface Props {
@@ -14,6 +14,7 @@ export const Button = ({ text, styles, onPress }: Props) => {
         <Pressable
             onPress={onPress}
             style={({ pressed }) => ([
+                styles,
                 globalStyles.btnPrimary,
                 {
                     opacity: pressed ? 0.8 : 1,

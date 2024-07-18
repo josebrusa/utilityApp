@@ -51,7 +51,7 @@ export const globalStyles = StyleSheet.create({
     },
 
     btnPrimary: {
-        backgroundColor: colors.primary,
+        // backgroundColor: colors.primary,
         borderRadius: 10,
         padding: 10,
         alignItems: "center",
