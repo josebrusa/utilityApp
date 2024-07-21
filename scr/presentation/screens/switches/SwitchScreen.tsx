@@ -1,9 +1,10 @@
-import { Switch } from 'react-native';
 import { CustomView } from '../../components/ui/CustomView';
 import { Card } from '../../components/ui/Card';
 import { useState } from 'react';
 import { CustomSwitch } from '../../components/ui/CustomSwitch';
 import { Separator } from '../../components/ui/Separator';
+import { Title } from '../../components/ui/Title';
+import { View } from 'react-native';
 
 export const SwitchScreen = () => {
 
@@ -18,6 +19,8 @@ export const SwitchScreen = () => {
 
     return (
         <CustomView style={{ marginTop: 100, paddingHorizontal: 10 }}>
+            <Title text='Switches' safe />
+            <View style={{ margin: 10 }} />
             <Card>
 
                 <CustomSwitch

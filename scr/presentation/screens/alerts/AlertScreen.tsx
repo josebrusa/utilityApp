@@ -4,10 +4,14 @@ import { Button } from '../../components/ui/Button';
 import { Alert, View } from 'react-native';
 import { globalStyles } from "../../../config/theme/theme";
 
-import prompt from 'react-native-prompt-android';
-import { showPromt } from "../../../config/theme/adapters/propmt.adapter";
+
+import { showPromt } from "../../../config/adapters/propmt.adapter";
+import { useContext } from "react";
+import { ThemeContext } from "../../context/ThemeContext";
 
 export const AlertScreen = () => {
+
+    const { isDark } = useContext(ThemeContext)
 
     const createTwoButtonAlert = () => {
 
@@ -15,10 +19,14 @@ export const AlertScreen = () => {
             {
                 text: 'Cancel',
                 onPress: () => console.log('Cancel Pressed'),
-                style: 'destructive',
+                style: 'cancel',
             },
             { text: 'OK', onPress: () => console.log('OK Pressed') },
-        ]);
+        ],
+            {
+                userInterfaceStyle: isDark ? 'dark' : 'light'
+            }
+        );
     }
     const createThreeButtonAlert = () =>
         Alert.alert('Alert Title', 'My Alert Msg', [
@@ -29,10 +37,17 @@ export const AlertScreen = () => {
             {
                 text: 'Cancel',
                 onPress: () => console.log('Cancel Pressed'),
-                style: 'cancel',
+                style: 'destructive',
             },
-            { text: 'OK', onPress: () => console.log('OK Pressed') },
-        ]);
+        ],
+            {
+                cancelable: true,
+                onDismiss() {
+                    console.log('onDismiss');
+                },
+                userInterfaceStyle: isDark ? 'dark' : 'light'
+            }
+        );
 
 
     const onShowPrompt = () => {
@@ -45,7 +60,9 @@ export const AlertScreen = () => {
                 { text: 'OK', onPress: () => console.log('OK') }
             ],
             placeholder: 'Jose Brusa'
-        });
+        },
+
+        );
 
         //Native Code
         // Alert.prompt(
@@ -60,7 +77,7 @@ export const AlertScreen = () => {
 
 
     return (
-        <CustomView style={globalStyles.globalMargin}>
+        <CustomView style={globalStyles.globalMargin} margin={false}>
             <Title safe text="Alertas" />
 
             <Button text="Alerta - 2 Botones" onPress={createTwoButtonAlert} />
