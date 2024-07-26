@@ -46,12 +46,11 @@ export const AlertScreen = () => {
                     console.log('onDismiss');
                 },
                 userInterfaceStyle: isDark ? 'dark' : 'light'
-            }
+            },
         );
 
 
     const onShowPrompt = () => {
-
 
         showPromt({
             title: 'Enter your name',
@@ -60,9 +59,7 @@ export const AlertScreen = () => {
                 { text: 'OK', onPress: () => console.log('OK') }
             ],
             placeholder: 'Jose Brusa'
-        },
-
-        );
+        },)
 
         //Native Code
         // Alert.prompt(
