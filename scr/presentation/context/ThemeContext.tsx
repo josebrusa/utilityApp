@@ -1,6 +1,7 @@
 import { createContext, PropsWithChildren, useEffect, useState } from 'react';
 import { darkColors, lightColors, ThemeColors } from '../../config/theme/theme';
-import { useColorScheme } from 'react-native';
+import { Appearance, AppState, useColorScheme } from 'react-native';
+import { DarkTheme, DefaultTheme, NavigationContainer } from '@react-navigation/native';
 
 type ThemeColor = 'light' | 'dark'
 
@@ -22,9 +23,9 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
 
     const [ currentTheme, setCurrentTheme ] = useState<ThemeColor>('light')
 
-    const setTheme = (theme: ThemeColor) => {
-        setCurrentTheme(theme)
-    }
+    const isDark = currentTheme === 'dark';
+    const colors = isDark ? darkColors : lightColors;
+
 
     useEffect(() => {
         if (colorScheme === 'dark') {
@@ -32,19 +33,36 @@ export const ThemeProvider = ({ children }: PropsWithChildren) => {
         } else {
             setCurrentTheme('light')
         }
-        console.log(colorScheme)
     }, [ colorScheme ])
 
+
+    useEffect(() => {
+        const subscription = AppState.addEventListener('change', nextAppState => {
+            const colorScheme = Appearance.getColorScheme();
+            setCurrentTheme(colorScheme === 'dark' ? 'dark' : 'light')
+        });
+        return () => {
+            subscription.remove();
+        };
+    }, [])
+
+    const setTheme = (theme: ThemeColor) => {
+        setCurrentTheme(theme)
+    };
     return (
-        <ThemeContext.Provider
-            value={{
-                currentTheme: currentTheme,
-                isDark: (currentTheme !== 'light'),
-                colors: (currentTheme === 'light' ? lightColors : darkColors),
-                setTheme: setTheme,
-            }}
+        <NavigationContainer
+            theme={isDark ? DarkTheme : DefaultTheme}
         >
-            {children}
-        </ThemeContext.Provider>
+            <ThemeContext.Provider
+                value={{
+                    currentTheme: currentTheme,
+                    isDark: isDark,
+                    colors: colors,
+                    setTheme: setTheme,
+                }}
+            >
+                {children}
+            </ThemeContext.Provider>
+        </NavigationContainer>
     )
 }
